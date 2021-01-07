@@ -110,7 +110,7 @@ public:
     value_type sample()
     {
         srand(time(NULL));
-        int x = rand() % size + 1;;
+        int x = rand() % size + 1;
         return array[x];
     }
 
