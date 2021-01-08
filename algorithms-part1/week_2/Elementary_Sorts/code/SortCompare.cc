@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "InsertionSort.h"
 #include "SelectionSort.h"
@@ -10,13 +11,13 @@ class SortCompare {
 public:
     double timeRandomInput(std::string& alg, int N, int T)
     {
-        srand(time(NULL));
         double total = 0.0;
         std::vector<double> a = std::vector<double>(N);
         for (int t = 0; t < T; ++t) {
             for (int i = 0; i < N; ++i) {
-                a[i] = rand() % N;
+                a[i] = i;
             }
+            std::random_shuffle(a.begin(), a.end());    // random_shuffle() 打乱容器中的数据
             total += getTime(alg, a);
         }
         return total;
