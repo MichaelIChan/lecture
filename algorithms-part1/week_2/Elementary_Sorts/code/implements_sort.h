@@ -2,6 +2,19 @@
 #define __IMPLEMENTS_SORT_H
 
 #include <iostream>
+#include <iterator>
+
+template <class RandomAccessIterator, class BidirectionalIterator, class Distance>
+inline BidirectionalIterator __copy_backward(RandomAccessIterator first, 
+                                             RandomAccessIterator last, 
+                                             BidirectionalIterator result,
+                                             Distance*)
+{
+    for (Distance __n = last - first; __n > 0; --__n) {
+        *--result = *--last;
+    }
+    return result;
+}
 
 template <class T>
 bool __less(T x, T y)
