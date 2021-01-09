@@ -1,7 +1,6 @@
 #ifndef __INSERTION_SORT_H
 #define __INSERTION_SORT_H
 
-#include <iostream>
 #include <iterator>
 
 #include "implements_sort.h"

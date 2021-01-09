@@ -1,8 +1,6 @@
 #ifndef __SELECTION_SORT_H
 #define __SELECTION_SORT_H
 
-#include <iostream>
-
 #include "implements_sort.h"
 
 template <class RandomAccessIterator>
