@@ -1,8 +1,6 @@
 #ifndef __SHELL_SORT_H
 #define __SHELL_SORT_H
 
-#include <iterator>
-
 #include "implements_sort.h"
 
 template <class RandomAccessIterator>
