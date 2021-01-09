@@ -6,6 +6,7 @@
 
 #include "InsertionSort.h"
 #include "SelectionSort.h"
+#include "ShellSort.h"
 
 class SortCompare {
 public:
@@ -29,6 +30,7 @@ private:
         std::clock_t start = clock();
         if (alg == "Insertion") insertion_sort(a.begin(), a.end());
         if (alg == "Selection") selection_sort(a.begin(), a.end());
+        if (alg == "Shell")     shell_sort(a.begin(), a.end());
         std::clock_t end = clock();
         return (double)(end - start) / CLOCKS_PER_SEC;
     }
