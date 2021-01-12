@@ -13,8 +13,9 @@ int main(void)
         std::vector<int> array;
         const int SIZE = 20;
         for (int i = 0; i < SIZE; ++i) {
-            array.push_back(rand() % SIZE);
+            array.push_back(i);
         }
+        std::random_shuffle(array.begin(), array.end());
 
         show(array.begin(), array.end());
 
@@ -30,8 +31,9 @@ int main(void)
         std::vector<char> array;
         const int SIZE = 26;
         for (int i = 0; i < SIZE; ++i) {
-            array.push_back((rand() % SIZE) + 65);  // push capital letter in
+            array.push_back(i + 65);  // push capital letter in
         }
+        std::random_shuffle(array.begin(), array.end());
 
         show(array.begin(), array.end());
 
