@@ -2,7 +2,6 @@
 #define __POINT_H_
 
 #include <iostream>
-#include <string>
 #include <limits>
 #include <functional>
 #include <cmath>
@@ -44,6 +43,8 @@ public:
         return *this;
     }
     Point(const Point& point) { *this = point; }
+    int getX() const { return x; }
+    int getY() const { return y; }
 
     /**
      * Returns the slope between this point and the specified point.
@@ -82,6 +83,7 @@ bool operator==(const Point& p1, const Point& p2)
 
 bool operator<(const Point& p1, const Point& p2)
 {
+    //std::cout << p1 << " < " << p2 << " ? : "<< (p1.y < p2.y || (p1.y == p2.y && p1.x < p2.x)) << std::endl;
     return (p1.y < p2.y || (p1.y == p2.y && p1.x < p2.x));
 }
 
