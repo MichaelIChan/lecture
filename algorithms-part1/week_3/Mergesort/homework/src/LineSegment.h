@@ -12,6 +12,10 @@ public:
         { this->start = start; this->end = end; slot = start.slopeTo(end); }
     Point getStart() const { return start; }
     double getSlot() const { return slot; }
+    bool isSubLineOf(LineSegment& line)
+    {
+        return (this->slot == line.getSlot()) && (this->start > line.getStart());
+    }
 
 private:
     Point start, end;

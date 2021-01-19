@@ -6,7 +6,7 @@
 #include "Point.h"
 #include "LineSegment.h"
 
-#define DEBUG
+// #define DEBUG
 
 class FastCollinearPoints {
 public:
@@ -19,12 +19,10 @@ public:
 #ifdef DEBUG
             std::cout << "round: " << i + 1 << std::endl;
 #endif
-            //int cntOtherPoints = 0;
-            //std::vector<Point> otherPoints = std::vector<Point>(length - 1);
             std::vector<Point> otherPoints;
 
             for (int j = 0; j < length; j++) {
-                if (i != j) {
+                if (internalPoints[i] < internalPoints[j]) {
                     otherPoints.push_back(internalPoints[j]);
 #ifdef DEBUG
                     std::cout << "origin point:" << internalPoints[i] << " push " << internalPoints[j] << " in" << std::endl;
@@ -70,8 +68,9 @@ public:
                 }
 #endif
                 auto tmp = LineSegment(points_set[i][0], points_set[i][points_set[i].size() - 1]);
-                line_set.insert(tmp);
-                // segments.push_back(tmp);
+                if (segments.size() == 0 || !tmp.isSubLineOf(segments[segments.size() - 1])) {
+                    segments.push_back(tmp);
+                }
 #ifdef DEBUG
                 std::cout << "push line : " << tmp << " in" << std::endl;
 #endif
@@ -81,15 +80,7 @@ public:
 
     int numberOfSegments() { return segments.size(); }
 
-    // std::vector<LineSegment>& getSegments() { return segments; }
-
-    std::vector<LineSegment>& getSegments()
-    {
-        for (auto& iter : line_set) {
-            segments.push_back(iter);
-        }
-        return segments;
-    }
+    std::vector<LineSegment>& getSegments() { return segments; }
 
 private:
     void initCheck(std::vector<Point>& points)
@@ -104,7 +95,7 @@ private:
             }
             internalPoints[i] = points[i];
         }
-        //std::sort(internalPoints.begin(), internalPoints.end());
+        std::sort(internalPoints.begin(), internalPoints.end());
     }
 
     void splitPointsBySlot(std::vector<std::vector<Point> >& points_set, 
@@ -147,8 +138,6 @@ private:
                         std::cout << iter << " slot : " << target << std::endl;
                     }
 #endif
-                } else {
-                    //target = pivot.slopeTo(points[i]);
                 }
                 target = pivot.slopeTo(points[i]);
                 tmp = std::vector<Point>();
@@ -160,7 +149,6 @@ private:
     const double EPSILON = 0.0000001f;
     std::vector<LineSegment> segments;      // 用来存储筛选出来到线段
     std::vector<Point> internalPoints;      // 用来存储初始化后的 Point 集合
-    // std::vector<std::vector<Point> > points_set; // 用来存储按照斜率分割的 point 集合
     std::unordered_set<LineSegment, hash_fun> line_set;
 };
 

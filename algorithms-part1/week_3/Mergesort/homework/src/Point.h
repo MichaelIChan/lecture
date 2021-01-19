@@ -6,8 +6,6 @@
 #include <functional>
 #include <cmath>
 
-// const double EPSILON = 0.0000001f;
-
 inline int compare_float(double x, double y){
     if (x < y) return -1;
     else if (x > y) return 1;
@@ -83,7 +81,6 @@ bool operator==(const Point& p1, const Point& p2)
 
 bool operator<(const Point& p1, const Point& p2)
 {
-    //std::cout << p1 << " < " << p2 << " ? : "<< (p1.y < p2.y || (p1.y == p2.y && p1.x < p2.x)) << std::endl;
     return (p1.y < p2.y || (p1.y == p2.y && p1.x < p2.x));
 }
 
@@ -97,9 +94,6 @@ public:
     SlotComp(Point& x) { p = x; }
     bool operator() (const Point& x, const Point& y)
     {
-        // std::cout << "slopeTo(x) : " << p.slopeTo(x) << std::endl;
-        // std::cout << "slopeTo(y) : " << p.slopeTo(y) << std::endl;
-        // std::cout << "compare_float() : " << compare_float(p.slopeTo(x), p.slopeTo(y)) << std::endl;
         return compare_float(p.slopeTo(x), p.slopeTo(y)) == -1;
     }
 private:
